@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from .models import vocabulary
-import random
+from random import randint, sample
 from django import forms
+import numpy as np
 
 
 class LearnNorwegianWords(forms.Form):
@@ -37,15 +38,17 @@ def verbs_to_learn(request):
     return render(request, 'norwegian/verbs.html', context)
 
 
-# answers = []
+random_list = sample(range(25), 5)
 
-
-def create_list_of_words(request):
+def train_vocabulary(request):
     '''
     Function that draws a random number and then checks if the user input is the same as the answer
     :param requests:
     :return:
     '''
+
+    #TO DO: button that allows to do it once again
+
     if 'answers' not in request.session:
         request.session['answers'] = []
 
@@ -54,13 +57,16 @@ def create_list_of_words(request):
     if "correct_answers" not in request.session:
         request.session["correct_answers"] = []
 
+    print(answers)
     correct_answers = request.session["correct_answers"]
 
-    num = random.randint(0, 24)
-    random_word = vocabulary.objects.all().values()[num]
-
-    # answers.insert(0, random_word['word_in_norwegian'])
-    request.session['answers'] += [random_word['word_in_norwegian']]
+    if len(random_list) > 0:
+        num = random_list[-1]
+        random_word = vocabulary.objects.all().values()[num]
+        request.session['answers'] += [random_word['word_in_norwegian']]
+        random_list.pop(-1)
+    else:
+        random_word = 'Koniec zadania'
 
     if len(answers) >= 2:
         answer = answers[-2]
@@ -72,8 +78,13 @@ def create_list_of_words(request):
     if answer == user_input:
         correct_answers.append(user_input)
 
+    if random_word == 'Koniec zadania':
+        end = 'Twój ostateczny wynik to:'
+    else:
+        end = ''
+
     points = len(correct_answers)
 
     context = {'random_word': random_word, 'user_input': user_input, 'answer': answer,
-               'correct_answers': correct_answers, 'points': points}
+               'correct_answers': correct_answers, 'points': points, 'end': end}
     return render(request, 'norwegian/train.html', context)

@@ -23,7 +23,11 @@
         <a>Twoja odpowiedź {{ user_input }} jest <strong>niepoprawna</strong></a>
     {% endif %}
     <br>
+    {% if end != '' %}
+        <a> {{ end }} <strong> {{ points }}</strong></a>
+    {% endif %}
     <br>
-    <a>Pokaż liczbę zdobytych punktów: {{ points }}</a>
+    <br>
+    <a>Pokaż aktualną liczbę zdobytych punktów: {{ points }}</a>
 {% endblock %}
 
