@@ -15,11 +15,15 @@
         <input type="text" name="user_input">
         <input type="submit" value="Submit">
     </form>
+    <br>
     {% if user_input == answer  %}
         <a>Twoja odpowiedź {{ user_input }} jest <strong>poprawna.</strong></a>
     {% endif %}
     {% if user_input != 0 and user_input != answer %}
         <a>Twoja odpowiedź {{ user_input }} jest <strong>niepoprawna</strong></a>
     {% endif %}
+    <br>
+    <br>
+    <a>Pokaż liczbę zdobytych punktów: {{ points }}</a>
 {% endblock %}
 

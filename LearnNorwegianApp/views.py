@@ -9,7 +9,8 @@ class LearnNorwegianWords(forms.Form):
 
 
 def index(request):
-    return render(request, "norwegian/index.html")
+
+    return render(request, "norwegian/index.html", {"answers": request.session['answers']})
 
 
 def learn(request):
@@ -36,26 +37,43 @@ def verbs_to_learn(request):
     return render(request, 'norwegian/verbs.html', context)
 
 
-answers = []
+# answers = []
 
 
-def create_list_of_words(requests):
+def create_list_of_words(request):
     '''
     Function that draws a random number and then checks if the user input is the same as the answer
     :param requests:
     :return:
     '''
+    if 'answers' not in request.session:
+        request.session['answers'] = []
+
+    answers = request.session['answers']
+
+    if "correct_answers" not in request.session:
+        request.session["correct_answers"] = []
+
+    correct_answers = request.session["correct_answers"]
 
     num = random.randint(0, 24)
     random_word = vocabulary.objects.all().values()[num]
 
-    answers.insert(0, random_word['word_in_norwegian'])
+    # answers.insert(0, random_word['word_in_norwegian'])
+    request.session['answers'] += [random_word['word_in_norwegian']]
+    print(answers)
     if len(answers) >= 2:
-        answer = answers[1]
+        answer = answers[-2]
     else:
         answer = ''
 
-    user_input = requests.GET.get('user_input', 0)
+    user_input = request.GET.get('user_input', 0)
+    print(user_input)
+    if answer == user_input:
+        correct_answers.append(user_input)
 
-    context = {'random_word': random_word, 'user_input': user_input, 'answer': answer}
-    return render(requests, 'norwegian/train.html', context)
+    points = len(correct_answers)
+    print(correct_answers)
+    context = {'random_word': random_word, 'user_input': user_input, 'answer': answer,
+               'correct_answers': correct_answers, 'points': points}
+    return render(request, 'norwegian/train.html', context)
