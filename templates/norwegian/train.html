@@ -5,12 +5,21 @@
 {%  endblock %}
 
 {% block content %}
-    <H1>Hello World!</H1>
-
     <h4>Ćwicz słówka</h4>
 
     {{ random_word.word_in_polish }}
-
-
+    <br/>
+    <form method="get">
+        {% csrf_token %}
+        <a>Przetłumacz na norweski:</a>
+        <input type="text" name="user_input">
+        <input type="submit" value="Submit">
+    </form>
+    {% if user_input == answer  %}
+        <a>Twoja odpowiedź {{ user_input }} jest <strong>poprawna.</strong></a>
+    {% endif %}
+    {% if user_input != 0 and user_input != answer %}
+        <a>Twoja odpowiedź {{ user_input }} jest <strong>niepoprawna</strong></a>
+    {% endif %}
 {% endblock %}
 
