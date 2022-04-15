@@ -61,19 +61,19 @@ def create_list_of_words(request):
 
     # answers.insert(0, random_word['word_in_norwegian'])
     request.session['answers'] += [random_word['word_in_norwegian']]
-    print(answers)
+
     if len(answers) >= 2:
         answer = answers[-2]
     else:
         answer = ''
 
     user_input = request.GET.get('user_input', 0)
-    print(user_input)
+
     if answer == user_input:
         correct_answers.append(user_input)
 
     points = len(correct_answers)
-    print(correct_answers)
+
     context = {'random_word': random_word, 'user_input': user_input, 'answer': answer,
                'correct_answers': correct_answers, 'points': points}
     return render(request, 'norwegian/train.html', context)
