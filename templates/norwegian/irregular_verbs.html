@@ -1,0 +1,44 @@
+{%  extends "norwegian/base.html" %}
+
+
+{% load static %}
+
+{% block title %}
+
+    Start learning vocabulary!
+{%  endblock %}
+
+{% block content %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/../../static/css/style.css' %}">
+    <div class="aligned_class">
+        <h3>Lista czasowników nierregularnych</h3>
+    </div>
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Infnitive</th>
+      <th scope="col">Presens</th>
+      <th scope="col">Preteritum</th>
+      <th scope="col">Presens perfektum</th>
+      <th scope="col">Po polsku</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for verb in irregular_verbs %}
+    <tr>
+      <th scope="row"> {{ forloop.counter }} </th>
+      <td>å {{ verb.infinitiv }}</td>
+      <td>{{ verb.presens }}</td>
+      <td>{{ verb.preteritum }}</td>
+      <td>{{ verb.presens_perfektum }}</td>
+      <td>{{ verb.polski }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

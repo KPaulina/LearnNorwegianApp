@@ -1,10 +1,14 @@
 {%  extends "norwegian/base.html" %}
+{% load static %}
 
 {% block title %}
     Webpage for learning Norwegian
 {%  endblock %}
 
 {% block content %}
-    <H1>Hello World!</H1>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/../../static/css/style.css' %}">
+     <div class="aligned_class">
+        <H1>Witam na stronie stworzonej do nauki norweskiego!</H1>
+     </div>
 {% endblock %}
 

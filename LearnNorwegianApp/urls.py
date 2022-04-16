@@ -23,4 +23,5 @@ urlpatterns = [
     path('words', views.vocab_to_learn, name="vocabulary"),
     path('verbs', views.verbs_to_learn, name="learning_verbs"),
     path('train', views.train_vocabulary, name="exercise"),
+    path('irverbs', views.uregelrette_verbs, name='irr_verbs')
 ]

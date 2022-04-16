@@ -1,14 +1,16 @@
 {%  extends "norwegian/base.html" %}
+{% load static %}
 
 {% block title %}
     Start learning vocabulary!
 {%  endblock %}
 
 {% block content %}
-    <h4>Ćwicz norweskie czasowniki</h4>
-
+    <link rel="stylesheet" type="text/css" href="{% static 'css/../../static/css/style.css' %}">
+    <div class="word_show">
     {{ random_word.word_in_polish }}
-    <br/>
+    </div>
+    <div class="show_train_content">
     <form method="get">
         {% csrf_token %}
         <a>Przetłumacz na norweski:</a>
@@ -27,7 +29,7 @@
         <a> {{ end }} <strong> {{ points }}</strong></a>
     {% endif %}
     <br>
-    <br>
     <a>Pokaż aktualną liczbę zdobytych punktów: {{ points }}</a>
+    </div>
 {% endblock %}
 

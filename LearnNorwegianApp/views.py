@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import vocabulary
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from .models import vocabulary, uregelrette_verb
 from random import randint, sample
 from django import forms
 import numpy as np
@@ -38,7 +39,8 @@ def verbs_to_learn(request):
     return render(request, 'norwegian/verbs.html', context)
 
 
-random_list = sample(range(25), 5)
+random_list = sample(range(25), 25)
+
 
 def train_vocabulary(request):
     '''
@@ -88,3 +90,9 @@ def train_vocabulary(request):
     context = {'random_word': random_word, 'user_input': user_input, 'answer': answer,
                'correct_answers': correct_answers, 'points': points, 'end': end}
     return render(request, 'norwegian/train.html', context)
+
+
+def uregelrette_verbs(request):
+    irregular_verbs = uregelrette_verb.objects.all().select_related().order_by('id')
+    context = {'irregular_verbs': irregular_verbs}
+    return render(request, 'norwegian/irregular_verbs.html', context)
