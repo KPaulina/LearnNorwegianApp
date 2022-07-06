@@ -7,4 +7,6 @@ Learn Norwegian App
 #### Bootstrap 5
 #### Postgres
 
+
+## The aim of the project 
 Project created for learning vocabulary
