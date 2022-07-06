@@ -2,9 +2,9 @@
 Learn Norwegian App
 
 
-##Project created in Django to learn vocabulary
+## Project created in Django to learn vocabulary
 
-##Technologies
+## Technologies
 Django 3.2.5
 Bootstrap 5
 Postgres
