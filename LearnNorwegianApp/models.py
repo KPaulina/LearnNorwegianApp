@@ -5,7 +5,7 @@ class vocabulary(models.Model):
     id = models.IntegerField(primary_key=True)
     word_in_norwegian = models.CharField(max_length=70)
     word_in_polish = models.CharField(max_length=70)
-    word_in_english = models.CharField(max_length=70, blank=True)
+    word_in_english = models.CharField(max_length=70)
     category = models.CharField(max_length=70, blank=True)
 
     def __str__(self):

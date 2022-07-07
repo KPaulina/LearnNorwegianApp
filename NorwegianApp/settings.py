@@ -81,8 +81,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'Norapp',
-        'USER': 'admin',
-        'PASSWORD': 'Hyec7LgMvrrTkw',
+        'USER': 'postgres',
+        'PASSWORD': 'iqejhsfddoznouyzvdty',
         'HOST': 'localhost',
         'PORT': '5432'
 
@@ -132,7 +132,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static/'),
 ]
 
-STATIC_ROOT = ("template/static")
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = "template/static"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

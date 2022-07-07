@@ -1,0 +1,23 @@
+{% extends "Base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div id="container">
+    {% if not requests.user.authenticated %}
+        <form method="POST">
+            {% csrf_token %}
+                {% if error %}
+                    <p style="color: red">{{ error }}</p>
+                {% endif %}
+                <div id="login">
+                    <input type="text" name="username" placeholder="username" />
+                    <input type="password" name="password" />
+                    <button type="submit">Login</button>
+                </div>
+            {% else %}
+        <p>Jesteś już zalagowany <a href="logout.html"></a></p>
+        {% endif %}
+        </form>
+    </div>
+{% endblock %}

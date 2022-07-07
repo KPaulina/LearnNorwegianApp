@@ -1,33 +1,35 @@
-{%  extends "norwegian/base.html" %}
+{%  extends "norwegian/../Base.html" %}
 
 {% block title %}
     Start learning vocabulary!
 {%  endblock %}
 
 {% block content %}
-    <H1>Hello World!</H1>
-
-    <h4>Lista samych czasowników</h4>
-
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Norweski</th>
-      <th scope="col">Polski</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for verb in list_of_verbs %}
-    <tr>
-      <th scope="row"> {{ forloop.counter }} </th>
-      <td>å {{ verb.word_in_norwegian }}</td>
-      <td>{{ verb.word_in_polish }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
+<div id="container">
+    <div id="header">
+        <h4>Lista czasowników</h4>
+    </div>
+        <div id="training_space">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Norweski</th>
+                  <th scope="col">Polski</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for verb in list_of_verbs %}
+                <tr>
+                  <th scope="row"> {{ forloop.counter }} </th>
+                  <td>å {{ verb.word_in_norwegian }}</td>
+                  <td>{{ verb.word_in_polish }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}
 
 

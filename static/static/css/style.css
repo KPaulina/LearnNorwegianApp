@@ -1,0 +1,27 @@
+#container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#training_space {
+    margin: auto;
+}
+
+#header {
+    margin: auto;
+}
+
+#login {
+    padding: 50px;
+}
+
+#words-space {
+    margin: auto;
+    text-align: center;
+    width: 2200px;
+}
+
+.aligned_class {
+    margin: auto;
+}
+

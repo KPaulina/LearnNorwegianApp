@@ -1,34 +1,28 @@
-{%  extends "norwegian/base.html" %}
+{%  extends "norwegian/../Base.html" %}
 
 {% block title %}
     Start learning vocabulary!
 {%  endblock %}
 
 {% block content %}
-    <H1>Hello World!</H1>
-    <h4>Lista wszystkich słówek norweskich</h4>
+    <div id="container">
+        <div id="header">
+            <h3>Lista słówek norweskich</h3>
+        </div>
 
-        <ul>
-        {% for word in data %}
-            <li>{{ word.word_in_norwegian }} - {{ word.word_in_polish }}</li>
-        {% endfor %}
-        </ul>
 
-    <h4>Lista samych czasowników</h4>
-    <ul>
-        {% for word in list_of_verbs %}
-            <li>{{ word.word_in_norwegian }} - {{ word.word_in_polish }}</li>
-        {% endfor %}
-    </ul>
-{#    <table border = "1", cellpadding="5", cellspacing="5">#}
-{#        <td>Norweski</td>#}
-{#        <td>Polski</td>#}
-{#        {% for verb in list_of_verbs %}#}
-{#            <tr>#}
-{#                <td>{{ verb.word_in_norwegian }}</td>#}
-{#                <td>{{ verb.word_in_polish }}</td>#}
-{#            </tr>#}
-{#        {% endfor %}#}
-{#    </table>#}
+        <div id="words-space">
+            <ul>
+            {% for word in data %}
+                <li>{{ word.word_in_norwegian }} - {{ word.word_in_polish }}</li>
+            {% endfor %}
+            </ul>
+            <ul>
+                {% for word in list_of_verbs %}
+                    <li>{{ word.word_in_norwegian }} - {{ word.word_in_polish }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 
 {% endblock %}
