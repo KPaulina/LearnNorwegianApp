@@ -11,8 +11,8 @@ class LearnNorwegianWords(forms.Form):
 
 
 def index(request):
-
-    return render(request, "norwegian/index.html", {"answers": request.session['answers']})
+    # context = {"answers": request.session['answers']}
+    return render(request, "norwegian/index.html", {})
 
 
 def learn(request):

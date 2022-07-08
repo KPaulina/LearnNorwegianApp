@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
 
 def login_view(requests):
     if requests.user.is_authenticated:
-        return render(requests, "account/already-logged-in.html", {})
+        return render(requests, "accounts/already-logged-in.html", {})
     if requests == "POST":
         username = requests.POST.get("username")
         password = requests.POST.get("passowrd")
@@ -26,4 +27,13 @@ def logout_view(requests):
 
 
 def register_view(requests):
-    return render(requests, "accounts/register.html", {})
+    form = UserCreationForm(requests.POST or None)
+    if form.is_valid():
+        user_obj = form.save()
+        return redirect('/login')
+    context = {'form': form}
+    return render(requests, "accounts/register.html", context)
+
+
+def already_logged_in(requests):
+    return render(requests, "accounts/already-logged-in.html", {})

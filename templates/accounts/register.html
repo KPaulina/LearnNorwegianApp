@@ -4,15 +4,15 @@
 
 {% block content %}
     <div id="container">
-    {% if requests.user.authenticated %}
+    {% if not requests.user.authenticated %}
         <form method="POST">
             {% csrf_token %}
                 <div id="login">
-                    <p>Are you sure you want to logout?</p>
-                    <button type="submit">Yes, logout.</button>
+                    {{ form.as_p }}
+                    <button type="submit">Zarejestruj się</button>
                 </div>
             {% else %}
-        <p>Nie jesteś zalagowany. Czy chcesz się <a href="{% url 'login' %}">zalogować</a>?</p>
+        <p>Jesteś już zalagowany Czy chcesz się <a href="{% url 'index' %}">wylogować?</a></p>
         {% endif %}
         </form>
     </div>

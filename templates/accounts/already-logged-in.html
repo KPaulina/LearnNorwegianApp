@@ -1,0 +1,12 @@
+{% extends "Base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <h1>Jesteś zalogowana</h1>
+    <div id="container">
+    {% if requests.user.authenticated %}
+        <p>Nie jesteś zalagowany. Czy chcesz się <a href="{% url 'login' %}">?</a></p>
+    {% endif %}
+    </div>
+{% endblock %}

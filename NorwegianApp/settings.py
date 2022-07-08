@@ -53,6 +53,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'NorwegianApp.urls'
+LOGIN_URL = '/login/'
 
 TEMPLATES = [
     {

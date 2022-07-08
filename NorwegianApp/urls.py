@@ -23,5 +23,5 @@ urlpatterns = [
     path("", views.index),
     path('admin/', admin.site.urls),
     path('vocab/', include("LearnNorwegianApp.urls")),
-    path('login/', include("accounts.urls"))
+    path('accounts/', include("accounts.urls"))
     ]

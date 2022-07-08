@@ -8,7 +8,7 @@
         <form method="POST">
             {% csrf_token %}
                 {% if error %}
-                    <p style="color: red">{{ error }}</p>
+                <p style="color: red">{{ error }}</p>
                 {% endif %}
                 <div id="login">
                     <input type="text" name="username" placeholder="username" />
@@ -16,7 +16,8 @@
                     <button type="submit">Login</button>
                 </div>
             {% else %}
-        <p>Jesteś już zalagowany <a href="logout.html"></a></p>
+        <p>Jesteś już zalagowany Czy chcesz się <a href="{% url 'index' %}">wylogować?</a></p>
+        <p>Potrzebujesz konta. Tutaj możesz się <a href="{% url 'login' %}">zarejestrować?</a>?</p>
         {% endif %}
         </form>
     </div>
