@@ -20,13 +20,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-mgy2$hs6w^_50-jqnaq4db&%y$!2)w)_h5l37#^rt^k4xz(t5u'
+SECRET_KEY = os.environ.get("SECRET_KEY")
+# SECRET_KEY = 'django-insecure-mgy2$hs6w^_50-jqnaq4db&%y$!2)w)_h5l37#^rt^k4xz(t5u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = str(os.environ.get('DEBUG')) == '1'
+# DEBUG = True
 
 ALLOWED_HOSTS = []
-
+if not DEBUG:
+    ALLOWED_HOSTS += [os.environ.get('ALLOWED_HOST')]
 
 # Application definition
 
@@ -83,7 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'Norapp',
         'USER': 'postgres',
-        'PASSWORD': 'iqejhsfddoznouyzvdty',
+        'PASSWORD': os.environ.get("PASSWORD_POSTGRES"),
         'HOST': 'localhost',
         'PORT': '5432'
 

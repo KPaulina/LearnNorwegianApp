@@ -3,7 +3,7 @@ Learn Norwegian App
 
 
 ## Technologies
-#### Django 3.2.5
+#### Django==4.0.6
 #### Bootstrap 5
 #### Postgres
 
