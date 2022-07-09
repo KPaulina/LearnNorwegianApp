@@ -11,8 +11,7 @@
                 <p style="color: red">{{ error }}</p>
                 {% endif %}
                 <div id="login">
-                    <input type="text" name="username" placeholder="username" />
-                    <input type="password" name="password" />
+                    {{ form.as_p }}
                     <button type="submit">Login</button>
                 </div>
             {% else %}
