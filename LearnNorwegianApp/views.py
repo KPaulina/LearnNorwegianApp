@@ -11,24 +11,15 @@ class LearnNorwegianWords(forms.Form):
 
 
 def index(request):
-    # context = {"answers": request.session['answers']}
     return render(request, "norwegian/index.html", {})
 
 
 def learn(request):
-    # if request.method == "POST":
-    #     form = LearnNorwegianWords(request.POST)
-    #     if form.is_valid():
-    #         word = form.cleaned_data["user_input"]
-    #         list_of_words.append(word)
-    #     else:
-    #         return render(request, "norwegian/learn.html", {"form": form})
     return render(request, "norwegian/learn.html")
 
 
 def vocab_to_learn(request):
     vocab_list = vocabulary.objects.all().select_related().order_by('id')
-    # vocab_list = vocabulary.objects.raw('SELECT * FROM public."LearnNorwegianApp_vocabulary"')
     context = {'data': vocab_list}
     return render(request, 'norwegian/words.html', context)
 
@@ -44,7 +35,7 @@ random_list = sample(range(25), 25)
 
 def train_vocabulary(request):
     '''
-    Function that draws a random number and then checks if the user input is the same as the answer
+    Function that draws a random number in range to randomly choose a word in Polish and then checks if the user input is the same as the answer
     :param requests:
     :return:
     '''
@@ -93,6 +84,7 @@ def train_vocabulary(request):
 
 
 def uregelrette_verbs(request):
+    '''Showing Norwegian irregular verbs''' 
     irregular_verbs = uregelrette_verb.objects.all().select_related().order_by('id')
     context = {'irregular_verbs': irregular_verbs}
     return render(request, 'norwegian/irregular_verbs.html', context)
