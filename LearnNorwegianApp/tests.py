@@ -1,6 +1,6 @@
 from django.test import TestCase
 from .models import vocabulary
-# Create your tests here.
+# Create your test here.
 
 
 class HomePageTestCase(TestCase):

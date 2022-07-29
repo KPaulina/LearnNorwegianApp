@@ -1,9 +1,16 @@
 from django.shortcuts import render
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from .models import vocabulary, uregelrette_verb
-from random import randint, sample
+from random import sample
 from django import forms
-import numpy as np
+from django.views.generic import FormView, ListView
+from .forms import SearchForm
+
+random_list = sample(range(25), 25)
+
+
+class SearchingView(FormView):
+    template_name = 'norwegian/search.html'
+    form_class = SearchForm
 
 
 class LearnNorwegianWords(forms.Form):
@@ -30,9 +37,6 @@ def verbs_to_learn(request):
     return render(request, 'norwegian/verbs.html', context)
 
 
-random_list = sample(range(25), 25)
-
-
 def train_vocabulary(request):
     '''
     Function that draws a random number in range to randomly choose a word in Polish and then checks if the user input is the same as the answer
@@ -50,7 +54,7 @@ def train_vocabulary(request):
     if "correct_answers" not in request.session:
         request.session["correct_answers"] = []
 
-    print(answers)
+
     correct_answers = request.session["correct_answers"]
 
     if len(random_list) > 0:
@@ -88,3 +92,12 @@ def uregelrette_verbs(request):
     irregular_verbs = uregelrette_verb.objects.all().select_related().order_by('id')
     context = {'irregular_verbs': irregular_verbs}
     return render(request, 'norwegian/irregular_verbs.html', context)
+
+
+def search_words_view(request):
+    query = request.GET.get('q')
+    qs = vocabulary.objects.search(query=query)
+    context = {
+        'object_list': qs
+    }
+    return render(request, "norwegian/search.html", context)

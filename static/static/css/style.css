@@ -1,6 +1,7 @@
 #container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 #training_space {
@@ -25,3 +26,19 @@
     margin: auto;
 }
 
+.container_search_words {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+}
+
+.search_input {
+    padding-left: 750px;
+}
+
+.search_result {
+    padding-top: 20px;
+    padding-left: 750px;
+
+}

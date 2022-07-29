@@ -7,7 +7,8 @@ def user_test(db) -> User:
     return User.objects.create_superuser(username="admin")
 
 
-def test_user_created(user_test: User) -> None:
+def test_user_superuser_created(user_test: User) -> None:
     assert user_test.username == 'admin'
     assert user_test.is_superuser
+
 

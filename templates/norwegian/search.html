@@ -1,0 +1,29 @@
+{%  extends "norwegian/../Base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="container_search_words">
+        <div class="search_input">
+        <h3>Wynik twojego wyszukiwania</h3>
+
+        <div class="input-group" id="search_form">
+            <form class="'d-flex" method="get" action="{% url 'search-words' %}">
+                {% csrf_token %}
+                <input type="text" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="q" />
+                <button class="btn btn-outline-primary" type="submit">search</button>
+            </form>
+        </div>
+        </div>
+
+        <div class="search_result">
+            <ul>
+            {% for object in object_list %}
+                <li>{{ object.word_in_polish }}</li>
+                <li>{{ object.word_in_norwegian }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+{% endblock %}
