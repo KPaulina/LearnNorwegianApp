@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.urls import path
 from . import views
+from .views import NorwegianListView, NorwegianAddView
 
-
+app_name = 'LearnNorwegianApp'
 urlpatterns = [
     path("", views.index, name="index"),
     path('learn', views.learn, name="learn"),
@@ -24,5 +25,9 @@ urlpatterns = [
     path('verbs', views.verbs_to_learn, name="learning_verbs"),
     path('train', views.train_vocabulary, name="exercise"),
     path('irverbs', views.uregelrette_verbs, name='irr_verbs'),
-    path('search', views.search_words_view, name='search-words')
+    path('search', views.search_words_view, name='search-words'),
+    #class based views
+    path('list', NorwegianListView.as_view(), name='list'),
+    path('add', NorwegianAddView.as_view(), name="add")
 ]
+

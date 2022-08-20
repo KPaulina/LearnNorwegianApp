@@ -4,6 +4,8 @@ from random import sample
 from django import forms
 from django.views.generic import FormView, ListView
 from .forms import SearchForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 
 random_list = sample(range(25), 25)
 
@@ -101,3 +103,14 @@ def search_words_view(request):
         'object_list': qs
     }
     return render(request, "norwegian/search.html", context)
+
+
+class NorwegianListView(LoginRequiredMixin, ListView):
+    model = vocabulary
+    queryset = vocabulary.objects.all()
+    context_object_name = 'words'
+
+
+class NorwegianAddView(LoginRequiredMixin, CreateView):
+    model = vocabulary
+    fields = ['word_in_norwegian', 'word_in_polish', 'word_in_english', 'category']

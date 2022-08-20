@@ -1,0 +1,16 @@
+{% extends 'sub_base.html' %}
+
+{% block content %}
+    <h1>List słówek</h1>
+    <a href="{% url "LearnNorwegianApp:add" %}">Dodaj słowo</a>
+    <ul>
+        {% for word in words %}
+            <ul>
+                <li>
+                    {{ word.word_in_norwegian }}
+                    {{ word.word_in_polish }}
+                </li>
+            </ul>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -8,7 +8,7 @@
         <h3>Wynik twojego wyszukiwania</h3>
 
         <div class="input-group" id="search_form">
-            <form class="'d-flex" method="get" action="{% url 'search-words' %}">
+            <form class="'d-flex" method="get" action="{% url 'LearnNorwegianApp:search-words' %}">
                 {% csrf_token %}
                 <input type="text" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="q" />
                 <button class="btn btn-outline-primary" type="submit">search</button>

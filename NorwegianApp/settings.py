@@ -96,8 +96,6 @@ POSTGRES_READY = (
     and POSTGRES_PORT is not None
 )
 
-print(POSTGRES_READY)
-
 if POSTGRES_READY:
     DATABASES = {
         "default": {
@@ -151,7 +149,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static/'),
+    os.path.join(BASE_DIR, ''),
 ]
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')

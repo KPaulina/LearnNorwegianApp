@@ -23,7 +23,7 @@
 }
 
 .aligned_class {
-    margin: auto;
+    padding-top: 50px ;
 }
 
 .container_search_words {
@@ -42,3 +42,5 @@
     padding-left: 750px;
 
 }
+
+
