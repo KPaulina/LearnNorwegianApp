@@ -6,7 +6,8 @@
     <ul>
         {% for word in words %}
             <ul>
-                <li><a href='update/{{ word.id }}'>{{ word.word_in_norwegian }}</a><br></li>
+
+                <li>{{ word.id }} <a href='update/{{ word.id }}'>{{ word.word_in_norwegian }}</a><br></li>
             </ul>
             <ul>
                 <a href="delete/{{ word.id }}">Delete</a>

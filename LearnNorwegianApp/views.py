@@ -7,6 +7,7 @@ from .forms import SearchForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
+from django.contrib.auth.forms import UserCreationForm
 
 random_list = sample(range(25), 25)
 
@@ -128,3 +129,6 @@ class NorwegianDeleteView(LoginRequiredMixin, DeleteView):
     model = vocabulary
     success_url = reverse_lazy('LearnNorwegianApp:list')
     template_name = "LearnNorwegianApp/vocabulary_confirm_delete.html"
+
+
+
