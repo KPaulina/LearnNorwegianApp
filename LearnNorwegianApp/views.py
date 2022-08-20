@@ -4,8 +4,9 @@ from random import sample
 from django import forms
 from django.views.generic import FormView, ListView
 from .forms import SearchForm
+from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 
 random_list = sample(range(25), 25)
 
@@ -114,3 +115,16 @@ class NorwegianListView(LoginRequiredMixin, ListView):
 class NorwegianAddView(LoginRequiredMixin, CreateView):
     model = vocabulary
     fields = ['word_in_norwegian', 'word_in_polish', 'word_in_english', 'category']
+    success_url = reverse_lazy('LearnNorwegianApp:list')
+
+
+class NorwegianUpdateView(LoginRequiredMixin, UpdateView):
+    model = vocabulary
+    fields = ['word_in_norwegian', 'word_in_polish', 'word_in_english', 'category']
+    success_url = reverse_lazy('LearnNorwegianApp:list')
+
+
+class NorwegianDeleteView(LoginRequiredMixin, DeleteView):
+    model = vocabulary
+    success_url = reverse_lazy('LearnNorwegianApp:list')
+    template_name = "LearnNorwegianApp/vocabulary_confirm_delete.html"

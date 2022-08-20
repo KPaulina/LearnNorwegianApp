@@ -1,0 +1,10 @@
+{% extends 'sub_base.html' %}
+
+{% block content %}
+    {{ object.word_in_norwegian }}
+    {{ object.word_in_polish }}
+    <form method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Potwierdź usunięcie">
+    </form>
+{% endblock %}

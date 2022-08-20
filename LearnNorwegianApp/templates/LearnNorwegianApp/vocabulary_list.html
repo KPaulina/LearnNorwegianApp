@@ -6,11 +6,12 @@
     <ul>
         {% for word in words %}
             <ul>
-                <li>
-                    {{ word.word_in_norwegian }}
-                    {{ word.word_in_polish }}
-                </li>
+                <li><a href='update/{{ word.id }}'>{{ word.word_in_norwegian }}</a><br></li>
             </ul>
+            <ul>
+                <a href="delete/{{ word.id }}">Delete</a>
+            </ul>
+
         {% endfor %}
     </ul>
 {% endblock %}

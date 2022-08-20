@@ -19,7 +19,6 @@ class vocabularyManager(models.Manager):
 
 
 class vocabulary(models.Model):
-    id = models.IntegerField(primary_key=True)
     word_in_norwegian = models.CharField(max_length=70)
     word_in_polish = models.CharField(max_length=70)
     word_in_english = models.CharField(max_length=70)
@@ -32,7 +31,6 @@ class vocabulary(models.Model):
 
 
 class uregelrette_verb(models.Model):
-    id = models.IntegerField(primary_key=True)
     infinitiv = models.CharField(max_length=50)
     presens = models.CharField(max_length=50)
     preteritum = models.CharField(max_length=50)
