@@ -23,5 +23,6 @@ urlpatterns = [
     path("", views.index, name='home-page'),
     path('admin/', admin.site.urls),
     path('vocab/', include("LearnNorwegianApp.urls")),
-    path('accounts/', include("accounts.urls"))
+    path('accounts/', include("accounts.urls")),
+    path('api', include('api.urls')),
     ]

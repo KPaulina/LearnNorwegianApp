@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'LearnNorwegianApp',
     'test',
+    'api',
     # 'LearnNorwegianApp.apps.LearnnorwegianappConfig',
 ]
 
