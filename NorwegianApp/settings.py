@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'LearnNorwegianApp',
     'test',
     'api',
+    'rest_framework',
     # 'LearnNorwegianApp.apps.LearnnorwegianappConfig',
 ]
 
