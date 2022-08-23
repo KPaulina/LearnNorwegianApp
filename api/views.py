@@ -9,3 +9,8 @@ class VocabularyDetailAPIView(generics.RetrieveAPIView):
     queryset = Vocabulary.objects.all()
     serializer_class = VocabularySerializer
 
+
+class VocabularyCreateAPIView(generics.CreateAPIView):
+    queryset = Vocabulary.objects.all()
+    serializer_class = VocabularySerializer
+
