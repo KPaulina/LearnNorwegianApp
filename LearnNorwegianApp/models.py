@@ -18,7 +18,7 @@ class vocabularyManager(models.Manager):
         return self.get_queryset().search(query=query)
 
 
-class vocabulary(models.Model):
+class Vocabulary(models.Model):
     word_in_norwegian = models.CharField(max_length=70)
     word_in_polish = models.CharField(max_length=70)
     word_in_english = models.CharField(max_length=70)
@@ -30,7 +30,7 @@ class vocabulary(models.Model):
         return self.word_in_norwegian + " " + self.word_in_polish
 
 
-class uregelrette_verb(models.Model):
+class IrregularVerbs(models.Model):
     infinitiv = models.CharField(max_length=50)
     presens = models.CharField(max_length=50)
     preteritum = models.CharField(max_length=50)

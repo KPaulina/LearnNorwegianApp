@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import vocabulary, uregelrette_verb
+from .models import Vocabulary, IrregularVerbs
 from random import sample
 from django import forms
 from django.views.generic import FormView, ListView
@@ -30,13 +30,13 @@ def learn(request):
 
 
 def vocab_to_learn(request):
-    vocab_list = vocabulary.objects.all().select_related().order_by('id')
+    vocab_list = Vocabulary.objects.all().select_related().order_by('id')
     context = {'data': vocab_list}
     return render(request, 'norwegian/words.html', context)
 
 
 def verbs_to_learn(request):
-    verb_list = vocabulary.objects.filter(category='verb')
+    verb_list = Vocabulary.objects.filter(category='verb')
     context = {'list_of_verbs': verb_list}
     return render(request, 'norwegian/verbs.html', context)
 
@@ -63,7 +63,7 @@ def train_vocabulary(request):
 
     if len(random_list) > 0:
         num = random_list[-1]
-        random_word = vocabulary.objects.all().values()[num]
+        random_word = Vocabulary.objects.all().values()[num]
         request.session['answers'] += [random_word['word_in_norwegian']]
         random_list.pop(-1)
     else:
@@ -93,14 +93,14 @@ def train_vocabulary(request):
 
 def uregelrette_verbs(request):
     '''Showing Norwegian irregular verbs''' 
-    irregular_verbs = uregelrette_verb.objects.all().select_related().order_by('id')
+    irregular_verbs = IrregularVerbs.objects.all().select_related().order_by('id')
     context = {'irregular_verbs': irregular_verbs}
     return render(request, 'norwegian/irregular_verbs.html', context)
 
 
 def search_words_view(request):
     query = request.GET.get('q')
-    qs = vocabulary.objects.search(query=query)
+    qs = Vocabulary.objects.search(query=query)
     context = {
         'object_list': qs
     }
@@ -108,25 +108,25 @@ def search_words_view(request):
 
 
 class NorwegianListView(LoginRequiredMixin, ListView):
-    model = vocabulary
-    queryset = vocabulary.objects.all()
+    model = Vocabulary
+    queryset = Vocabulary.objects.all()
     context_object_name = 'words'
 
 
 class NorwegianAddView(LoginRequiredMixin, CreateView):
-    model = vocabulary
+    model = Vocabulary
     fields = ['word_in_norwegian', 'word_in_polish', 'word_in_english', 'category']
     success_url = reverse_lazy('LearnNorwegianApp:list')
 
 
 class NorwegianUpdateView(LoginRequiredMixin, UpdateView):
-    model = vocabulary
+    model = Vocabulary
     fields = ['word_in_norwegian', 'word_in_polish', 'word_in_english', 'category']
     success_url = reverse_lazy('LearnNorwegianApp:list')
 
 
 class NorwegianDeleteView(LoginRequiredMixin, DeleteView):
-    model = vocabulary
+    model = Vocabulary
     success_url = reverse_lazy('LearnNorwegianApp:list')
     template_name = "LearnNorwegianApp/vocabulary_confirm_delete.html"
 
