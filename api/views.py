@@ -1,4 +1,3 @@
-
 from LearnNorwegianApp.models import Vocabulary
 from rest_framework import generics
 from .serializers import VocabularySerializer
@@ -10,7 +9,13 @@ class VocabularyDetailAPIView(generics.RetrieveAPIView):
     serializer_class = VocabularySerializer
 
 
-class VocabularyCreateAPIView(generics.CreateAPIView):
+class VocabularyListCreateAPIView(generics.ListCreateAPIView):
     queryset = Vocabulary.objects.all()
     serializer_class = VocabularySerializer
+
+
+class VocabularyDeleteUpdateAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Vocabulary.objects.all()
+    serializer_class = VocabularySerializer
+    lookup_field = 'pk'
 
