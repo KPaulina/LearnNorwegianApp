@@ -32,7 +32,7 @@
            <ul class="sub-menu">
                 {% if not user.is_authenticated %}
                     <li><a href="{% url 'login' %}">Login</a></li>
-                    <li><a href="{% url 'register' %}">Rejestracja</a></li>
+                    <li><a href="{% url 'signup' %}">Rejestracja</a></li>
                 {% endif %}
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'LearnNorwegianApp:exercise' %}">Ćwicz norweskie słownictwo</a></li>
