@@ -1,5 +1,5 @@
 from LearnNorwegianApp.models import Vocabulary
-from rest_framework import generics
+from rest_framework import generics, permissions
 from .serializers import VocabularySerializer
 # Create your views here.
 
@@ -12,6 +12,7 @@ class VocabularyDetailAPIView(generics.RetrieveAPIView):
 class VocabularyListCreateAPIView(generics.ListCreateAPIView):
     queryset = Vocabulary.objects.all()
     serializer_class = VocabularySerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class VocabularyDeleteUpdateAPIView(generics.RetrieveUpdateDestroyAPIView):
