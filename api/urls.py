@@ -5,6 +5,6 @@ from .views import VocabularyDetailAPIView, VocabularyListCreateAPIView, \
 
 urlpatterns = [
     path('<int:pk>', VocabularyDetailAPIView.as_view()),
-    path('<int:pk>/edit', VocabularyDeleteUpdateAPIView.as_view()),
+    path('<int:pk>/edit', VocabularyDeleteUpdateAPIView.as_view(), name='vocabulary-edit'),
     path('', VocabularyListCreateAPIView.as_view()),
 ]
