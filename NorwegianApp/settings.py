@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'test',
     'api',
     'rest_framework',
+    #third party api services
+    'algoliasearch_django',
     # 'LearnNorwegianApp.apps.LearnnorwegianappConfig',
 ]
 
@@ -162,3 +164,15 @@ STATIC_ROOT = "template/static"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = "/"
+
+REST_FRAMEWORK = {
+    "DEFAULRT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE": 10
+}
+
+ALGOLIA = {
+    'APPLICATION_ID': 'SD9K68RRDQ',
+    'API_KEY': 'e17a16d4c9b92b633e8475d207e05990',
+    'INDEX_PREFIX': 'rest_app'
+}
+

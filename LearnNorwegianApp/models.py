@@ -23,8 +23,12 @@ class Vocabulary(models.Model):
     word_in_polish = models.CharField(max_length=70)
     word_in_english = models.CharField(max_length=70)
     category = models.CharField(max_length=70, blank=True)
+    public = models.BooleanField(default=True)
 
     objects=vocabularyManager()
+
+    def is_public(self) -> bool:
+        return self.public
 
     def __str__(self):
         return self.word_in_norwegian + " " + self.word_in_polish
