@@ -174,7 +174,7 @@ LOGIN_REDIRECT_URL = "/"
 # API_KEY = os.environ["ALGOLIA_API_KEY"]
 
 ALGOLIA = {
-    'APPLICATION_ID': os.environ.get("ALGOLIA_APP_ID"),
+    'APPLICATION_ID': 'SD9K68RRDQ',
     'API_KEY': os.environ.get("ALGOLIA_API_KEY"),
     'INDEX_PREFIX': 'rest_app'
 }
