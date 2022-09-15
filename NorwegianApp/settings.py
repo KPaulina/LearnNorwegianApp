@@ -11,9 +11,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
-
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+env = environ.Env()
+environ.Env.read_env()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -82,7 +84,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'NorwegianApp.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -165,15 +166,16 @@ STATIC_ROOT = "template/static"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = "/"
 
-REST_FRAMEWORK = {
-    "DEFAULRT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
-    "PAGE_SIZE": 10
-}
-APPLICATION_ID = os.environ.get("APPLICATION_ID")
-API_KEY = os.environ.get("API_KEY")
+# REST_FRAMEWORK = {
+#     "DEFAULRT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+#     "PAGE_SIZE": 10
+# }
+# APPLICATION_ID = os.environ.get("APPLICATION_ID")
+# API_KEY = os.environ["ALGOLIA_API_KEY"]
+
 ALGOLIA = {
-    'APPLICATION_ID': APPLICATION_ID,
-    'API_KEY': API_KEY,
+    'APPLICATION_ID': os.environ.get("ALGOLIA_APP_ID"),
+    'API_KEY': os.environ.get("ALGOLIA_API_KEY"),
     'INDEX_PREFIX': 'rest_app'
 }
 
