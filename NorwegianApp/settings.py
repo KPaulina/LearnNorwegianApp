@@ -169,10 +169,11 @@ REST_FRAMEWORK = {
     "DEFAULRT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 10
 }
-
+APPLICATION_ID = os.environ.get("APPLICATION_ID")
+API_KEY = os.environ.get("API_KEY")
 ALGOLIA = {
-    'APPLICATION_ID': 'SD9K68RRDQ',
-    'API_KEY': 'e17a16d4c9b92b633e8475d207e05990',
+    'APPLICATION_ID': APPLICATION_ID,
+    'API_KEY': API_KEY,
     'INDEX_PREFIX': 'rest_app'
 }
 
