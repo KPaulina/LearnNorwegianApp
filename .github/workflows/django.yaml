@@ -30,6 +30,7 @@ jobs:
       env:
         POSTGRES_USER: ${{ ENV.POSTGRES_USER }}
         POSTGRES_DB: ${{ ENV.POSTGRES_DB }}
+        POSTGRES_PASSWORD: ${{ ENV.POSTGRES_PASSWORD }}
         ALGOLIA_API_KEY: ${{ ENV.ALGOLIA_API_KEY }}
         ALGOLIA_APP_ID: ${{ ENV.ALGOLIA_APP_ID }}
       run: |
