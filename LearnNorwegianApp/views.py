@@ -9,7 +9,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
 
-random_list = sample(range(25), 25)
+# random_list = sample(range(25), 25)
+
+
+
 
 
 class SearchingView(FormView):
@@ -30,12 +33,22 @@ def learn(request):
 
 
 def vocab_to_learn(request):
+    '''
+    This view shows a list of words
+    :param request:
+    :return:
+    '''
     vocab_list = Vocabulary.objects.all().select_related().order_by('id')
     context = {'data': vocab_list}
     return render(request, 'norwegian/words.html', context)
 
 
 def verbs_to_learn(request):
+    '''
+    This view shows table of irregular verbs to learn
+    :param request:
+    :return:
+    '''
     verb_list = Vocabulary.objects.filter(category='verb')
     context = {'list_of_verbs': verb_list}
     return render(request, 'norwegian/verbs.html', context)
@@ -43,12 +56,16 @@ def verbs_to_learn(request):
 
 def train_vocabulary(request):
     '''
-    Function that draws a random number in range to randomly choose a word in Polish and then checks if the user input is the same as the answer
+    This view draws a random number in range to randomly choose a word in Polish and then checks if the user input is the same as the answer
     :param requests:
     :return:
     '''
 
     #TO DO: button that allows to do it once again
+    if 'random_list' not in request.session:
+        request.session['random_list'] = sample(range(25), 25)
+
+    random_list = request.session['random_list']
 
     if 'answers' not in request.session:
         request.session['answers'] = []
@@ -58,16 +75,33 @@ def train_vocabulary(request):
     if "correct_answers" not in request.session:
         request.session["correct_answers"] = []
 
-
     correct_answers = request.session["correct_answers"]
 
+    def random_number():
+        if len(random_list) > 0:
+            return random_list[-1]
+
+    num = random_number()
     if len(random_list) > 0:
-        num = random_list[-1]
         random_word = Vocabulary.objects.all().values()[num]
         request.session['answers'] += [random_word['word_in_norwegian']]
         random_list.pop(-1)
     else:
         random_word = 'Koniec zadania'
+
+    if request.GET.get('reset') == 'reset':
+        del request.session['answers']
+        del request.session['correct_answers']
+        del request.session['random_list']
+        request.session['random_list'] = sample(range(25), 25)
+        request.session['answers'] = []
+        request.session['correct_answers'] = []
+        if len(random_list) > 0:
+            random_word = Vocabulary.objects.all().values()[num]
+            request.session['answers'] += [random_word['word_in_norwegian']]
+            random_list.pop(-1)
+        else:
+            random_word = 'Koniec zadania'
 
     if len(answers) >= 2:
         answer = answers[-2]
@@ -86,19 +120,27 @@ def train_vocabulary(request):
 
     points = len(correct_answers)
 
+
     context = {'random_word': random_word, 'user_input': user_input, 'answer': answer,
                'correct_answers': correct_answers, 'points': points, 'end': end}
     return render(request, 'norwegian/train.html', context)
 
 
 def uregelrette_verbs(request):
-    '''Showing Norwegian irregular verbs''' 
+    '''
+    This view is showing Norwegian irregular verbs
+    '''
     irregular_verbs = IrregularVerbs.objects.all().select_related().order_by('id')
     context = {'irregular_verbs': irregular_verbs}
     return render(request, 'norwegian/irregular_verbs.html', context)
 
 
 def search_words_view(request):
+    '''
+    This view makes it possible to search for words
+    :param request:
+    :return:
+    '''
     query = request.GET.get('q')
     qs = Vocabulary.objects.search(query=query)
     context = {

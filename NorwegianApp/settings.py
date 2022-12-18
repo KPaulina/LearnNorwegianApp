@@ -86,6 +86,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'NorwegianApp.wsgi.application'
 
 # Database
+DATABASE_URL = 'postgresql://<postgresql>'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 POSTGRES_DB = os.environ.get("POSTGRES_DB")
 POSTGRES_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
@@ -100,6 +101,7 @@ POSTGRES_READY = (
     and POSTGRES_HOST is not None
     and POSTGRES_PORT is not None
 )
+
 
 if POSTGRES_READY:
     DATABASES = {
