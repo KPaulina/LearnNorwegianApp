@@ -12,9 +12,6 @@ from django.contrib.auth.forms import UserCreationForm
 # random_list = sample(range(25), 25)
 
 
-
-
-
 class SearchingView(FormView):
     template_name = 'norwegian/search.html'
     form_class = SearchForm
@@ -61,7 +58,7 @@ def train_vocabulary(request):
     :return:
     '''
 
-    #TO DO: button that allows to do it once again
+    #TO DO: move this code into models to make fat models and skinny view
     if 'random_list' not in request.session:
         request.session['random_list'] = sample(range(25), 25)
 
@@ -119,7 +116,6 @@ def train_vocabulary(request):
         end = ''
 
     points = len(correct_answers)
-
 
     context = {'random_word': random_word, 'user_input': user_input, 'answer': answer,
                'correct_answers': correct_answers, 'points': points, 'end': end}
