@@ -35,7 +35,8 @@
                     <li><a href="{% url 'signup' %}">Rejestracja</a></li>
                 {% endif %}
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'LearnNorwegianApp:exercise' %}">Ćwicz norweskie słownictwo</a></li>
+                    <li><a href="{% url 'LearnNorwegianApp:exercise' %}">Z PL na NO</a></li>
+                    <li><a href="{% url 'LearnNorwegianApp:english-to-norwegian'%}">Z ENG na NO</a></li>
                     <li><a href="{% url 'LearnNorwegianApp:add' %}">Dodaj słowo</a></li>
                     <li><a href="{% url 'LearnNorwegianApp:list' %}">List słówek</a></li>
                     <li><a href="{% url 'logout' %}">Logout</a></li>

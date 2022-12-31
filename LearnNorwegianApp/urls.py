@@ -26,6 +26,7 @@ urlpatterns = [
     path('train', views.train_vocabulary, name="exercise"),
     path('irverbs', views.uregelrette_verbs, name='irr_verbs'),
     path('search', views.search_words_view, name='search-words'),
+    path('train_english_to_norwigian', views.english_to_norwegian, name='english-to-norwegian'),
     #class based views
     path('list', NorwegianListView.as_view(), name='list'),
     path('add', NorwegianAddView.as_view(), name="add"),
