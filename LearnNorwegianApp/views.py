@@ -63,7 +63,7 @@ def verbs_to_learn(request):
     return render(request, 'norwegian/verbs.html', context)
 
 
-def train_vocabulary(request):
+def polish_to_norwegian(request):
     '''
     This view draws a random number in range to randomly choose a word in Polish and then checks if the user input is the same as the answer
     :param requests:
