@@ -65,7 +65,7 @@ def verbs_to_learn(request):
 
 def polish_to_norwegian(request):
     '''
-    This view draws a random number in range to randomly choose a word in Polish and then checks if the user input is the same as the answer
+    This view draws a random number in range to randomly choose a word in Polish and then checks if the user input in Norwegian is the same as the answer
     :param requests:
     :return:
     '''
@@ -134,6 +134,11 @@ def polish_to_norwegian(request):
 
 
 def english_to_norwegian(request):
+    '''
+    This view draws a random number in range to randomly choose a word in English and then checks if the user input in Norwegian is the same as the answer
+    :param request:
+    :return:
+    '''
     if 'random_list' not in request.session:
         request.session['random_list'] = sample(range(25), 25)
 
