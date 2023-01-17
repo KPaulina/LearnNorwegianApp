@@ -1,5 +1,5 @@
 # NorwegianApp
-Learn Norwegian App
+Application created in Django to learn Norwegian vocabulary.
 
 
 ## Technologies
